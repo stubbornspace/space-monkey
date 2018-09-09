@@ -42,7 +42,6 @@ The profiles are defined in JSON and and can be found in:
 ```
 
 ## Source code <a name="source"></a>
-The AWS Lambda source code is available in node.js 8.10 and Python 3.6
 
 **source/custom-resources-js::**<br/>
 A NodeJS based  Lambda function used as a custom resource for deploying MediaLive and MediaPackage resources through CloudFormation.
@@ -63,37 +62,28 @@ To solution can be deployed through the CloudFormation template available on the
 * Node.js 8.x or Python 3.x
 
 ### 1. Create an Amazon S3 Bucket.
-The CloudFormation template is configured to pull the Lambda deployment packages from Amazon S3 bucket in the region the template is being launched in. The bucket should be appended with '-region-name'. for example to deploy the content to us-east-1 create a bucket named: ```bucket-us-east-1```
-
+The CloudFormation template is configured to pull the Lambda deployment packages from Amazon S3 bucket in the region the template is being launched in. Create a bucket in the desired region with the region name appended to the name of the bucket. eg: for us-east-1 create a bucket named: ```bucket-us-east-1```
 
 ### 2. Create the deployment packages:
+Run the build-s3-dist.sh script, passing in 2 variables:
+* CODEBUCKET = the name of the S3 bucket (do NOT include the -region extension)
+* CODEVERSION = this will be the subfolder containing the code.
 
-build-s3-dist.sh::
+This will:
 * copies the console files to ./deployment/dist/.
 * copies the CloudFormation template to ./deployment/dist/ and updates the source code mappings.
 * zips and copies the source code to ./deployment/dist/
 
-To run the build-s3-dist.sh script you will need to pass in 2 variables:
-
-* CODEBUCKET = the name of the S3 bucket **
-* CODEVERSION = this will be the subfolder containing the code.
-
-** do NOT include the -region extension, this is added by the CloudFormation template.
-
-
-#### Example:
-
+Example:
 ```
   cd deployment/
   ./build-s3-dist.sh bucket 1.01
 ```
-
  This will deploy the source code to:
 ```
   s3://bucket-us-east-1/live-streaming-on-aws/1.01/.
 ```
 And update the CloudFormation template mappings:
-
 ```
   SourceCode:
     General:
