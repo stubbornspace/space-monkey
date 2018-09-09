@@ -2,6 +2,8 @@
 
 How to implement Live streaming on AWS  at scale leveraging AWS Elemental MediaLive,  MediaPackage and Amazon CloudFront. This repo contains the source code for the AWS solution [Live Streaming on AWS](https://aws.amazon.com/answers/media-entertainment/live-streaming-on-aws/).
 
+* [Source Code](#source)
+
 ## Architecture Overview
 
 ![Architecture](architecture.png)
