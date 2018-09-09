@@ -10,10 +10,10 @@ How to implement Live streaming on AWS  at scale leveraging AWS Elemental MediaL
 Is configured to ingest 2 live feeds and transcode the content into multiple adaptive bitrate HLS content.  The solution can be configured to ingest RTP RTMP and HLS streams and will apply 1 of 3 encoding profiles which include bitrates of 1080p through 270p. The encoding profile is set at launch and is based on the source resolution (See Encoding Profiles below).
 
 **AWS Elemental MediaPackage**<br/>
-The services is configured at launch to ingest the MediaLive Output and package the Live stream into HLS, DASH and MSS formats that are delivered through 3 MediaPackage custom endpoints.
+Ingests the MediaLive Output and package the Live stream into HLS, DASH and MSS formats that are delivered through 3 MediaPackage custom endpoints.
 
 **Amazon CloudFront**<br/>
-A CloudFront distribution is deployed by the solution with the three MediaPackage custom endpoints as the Origins for the distribution. CloudFront then enable the live stream content to be delivered globally and at scale.
+Is configured with the three MediaPackage custom endpoints as the Origins for the distribution. CloudFront then enable the live stream content to be delivered globally and at scale.
 
 **Optional Demo Deployment**<br/>
 As part of the CloudFormation template a Demo HTML preview player is deployed to an Amazon S3 bucket which is a single page HTML/JavaScript application that will playback the HLS, DASH and MMS streams. In addition, the solution can be configured to ingest a Demo HLS feed hosted on AWS.   
@@ -26,13 +26,13 @@ For details on deploying the solution please see the details on the Solution hom
 ## Encoding Profiles
 To solution Configures AWS Elemental MediaLive with one of three encoding profiles based on the source resolution defined at launch as a CloudFormation parameter. The three options are 1080, 720, 540 and correspond to the following encoding profiles:
 
-**1080p Profile:**<br/>
+**1080p Profile::**<br/>
 1080p@6500kbps, 720p@5000kbps, 720p@3300kbps, 540p@2000kbps, 432p@1200kbps, 360p@800kbps, 270@400kbps, 234p@200kbps.
 
-**720p Profile:**<br/>
+**720p Profile::**<br/>
 720p@5000kbps, 720p@3300kbps, 540p@2000kbps, 432p@1200kbps, 360p@800kbps, 270@400kbps, 234p@200kbps.
 
-**540p Profile:**<br/>
+**540p Profile::**<br/>
  540p@2000kbps, 432p@1200kbps, 360p@800kbps, 270@400kbps, 234p@200kbps.
 
 The profiles are defined in JSON and and can be found in:
@@ -44,13 +44,13 @@ The profiles are defined in JSON and and can be found in:
 ## Source code <a name="source"></a>
 The AWS Lambda source code is available in node.js 8.10 and Python 3.6
 
-**source/custom-resources-js:**<br/>
+**source/custom-resources-js::**<br/>
 A NodeJS based  Lambda function used as a custom resource for deploying MediaLive and MediaPackage resources through CloudFormation.
 
-**source/custom-resources-py:**<br/>
+**source/custom-resources-py::**<br/>
 A Python based  Lambda function used as a custom resource for deploying MediaLive and MediaPackage resources through CloudFormation.
 
-**source/console**<br/>
+**source/console::**<br/>
 A single page application used to demo playback of the live stream. This is deployed to an AWS S3 bucket as part of the CloudFormation deployment.
 
 
@@ -68,14 +68,10 @@ The CloudFormation template is configured to pull the Lambda deployment packages
 
 ### 2. Create the deployment packages:
 
- The template includes a Mapping for the source code location:
-
-```
- SourceCode:
-   General:
-     S3Bucket: CODEBUCKET
-     KeyPrefix: live-streaming-on-aws/CODEVERSION
-```
+build-s3-dist.sh::
+* copies the console files to ./deployment/dist/.
+* copies the CloudFormation template to ./deployment/dist/ and updates the source code mappings.
+* zips and copies the source code to ./deployment/dist/
 
 To run the build-s3-dist.sh script you will need to pass in 2 variables:
 
@@ -83,6 +79,7 @@ To run the build-s3-dist.sh script you will need to pass in 2 variables:
 * CODEVERSION = this will be the subfolder containing the code.
 
 ** do NOT include the -region extension, this is added by the CloudFormation template.
+
 
 #### Example:
 
@@ -95,10 +92,9 @@ To run the build-s3-dist.sh script you will need to pass in 2 variables:
 ```
   s3://bucket-us-east-1/live-streaming-on-aws/1.01/.
 ```
-And update the CloudFormation tempalte mappings:
+And update the CloudFormation template mappings:
 
 ```
-Mappings:
   SourceCode:
     General:
       S3Bucket: bucket
@@ -106,10 +102,6 @@ Mappings:
 ```
 
  ### 3. Upload the Code to Amazon S3.
- The build-s3-dist.sh script:
- * copies the console files to ./deployment/dist/.
- * copies the CloudFormation template to ./deployment/dist/ and updates the source code mappings.
- * zips and copies the source code to ./deployment/dist/
 
 Use the AWS CLI to sync the lambda code and demo console files to amazon S3:
 
