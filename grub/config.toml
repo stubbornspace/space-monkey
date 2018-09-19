@@ -8,9 +8,9 @@ googleAnalytics = "your_google_analytics_id"
 hasCJKLanguage = false
 
 [params]
-	author = "site_author"
+	author = "bob the bob bob"
 	description = "Site Description"
-	bio = "author biography"
+	bio = "FOoD I LIkE"
 
 	twitter = "your_twitter_id"
 	facebook = "your_facebook_id"
