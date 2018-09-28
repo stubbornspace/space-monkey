@@ -7,7 +7,6 @@ On this Page
 
 # [Heading Link](#section-i-want)
 
-## [Section I Want]
 
 ## Architecture Overview
 
@@ -112,7 +111,7 @@ Use the AWS CLI to sync the lambda code and demo console files to amazon S3:
 Launch the updated CloudFormation template from ```deployment/dist/``` folder.
 
 
-## [Section I Want] 
+## [Section I Want]
 
 
 ***
