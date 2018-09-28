@@ -7,12 +7,12 @@ How to implement Live streaming on AWS  at scale leveraging AWS Elemental MediaL
 * [Architecture Overview]()
 * [Solution Deployment]()
 * [Source Code]()
-* [Encoding Profiles]()
+* [Encoding Profiles](#encoding profile)
 * [Creating a custom Build]()
-* Additional Resources
+* [Additional Resources]()
 
 
-## [Architecture Overview]
+## Architecture Overview
 
 ![Architecture](architecture.png)
 
