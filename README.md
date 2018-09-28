@@ -4,13 +4,12 @@ How to implement Live streaming on AWS  at scale leveraging AWS Elemental MediaL
 
 
 ## On this Page
-- [Architecture Overview]()
-- [Solution Deployment]()
+- [Architecture Overview](#architecture-overview)
+- [Deployment](#deployment)
 - [Source Code](#source-code)
-- [Encoding Profiles](#encoding-profile)
-- [Creating a custom Build]()
-- [Additional Resources]()
-- [Branch](#branch)
+- [Encoding Profiles](#encoding-profiles)
+- [Creating a custom Build](#creating-a-custom-build)
+- [Additional Resources](additional-resources)
 
 
 ## Architecture Overview
@@ -116,7 +115,22 @@ Use the AWS CLI to sync the lambda code and demo console files to amazon S3:
 Launch the updated CloudFormation template from ```deployment/dist/``` folder.
 
 
-### Branch
+## Additional Resources
+
+### Services
+- [AWS Elemental MediaLive](https://aws.amazon.com/medialive/)
+- [AWS Elemental MediaPackage](https://aws.amazon.com/mediapackage/)
+- [AWS Elemental MediaPackage](https://aws.amazon.com/mediatailor/)
+- [Amazon CloudFront](https://aws.amazon.com/cloudfront/)
+- [OTT Workflows](https://www.elemental.com/applications/ott-workflows)
+
+### Other Solutions and Demos
+- [Video On Demand On AWS](https://aws.amazon.com/answers/media-entertainment/video-on-demand-on-aws/)
+- [Media Analysis Solution](https://aws.amazon.com/answers/media-entertainment/media-analysis-solution/)
+- [Live Streaming and Live to VOD Workshop](https://github.com/awslabs/speke-reference-server)
+- [Live to VOD with Machine Learning](https://github.com/aws-samples/aws-elemental-instant-video-highlights)
+- [Demo SPEKE Reference Server](https://github.com/awslabs/speke-reference-server)
+
 
 
 ***
