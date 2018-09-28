@@ -34,7 +34,7 @@ As part of the CloudFormation template a Demo HTML preview player is deployed to
 The solution is deployed using a CloudFormation template with a lambda backed custom resource, available in both NodeJS and Python.
 For details on deploying the solution please see the details on the Solution home page:  [Live Streaming on AWS](https://aws.amazon.com/answers/media-entertainment/live-streaming/)
 
-## Encoding-Profiles
+## Encoding Profiles
 To solution Configures AWS Elemental MediaLive with one of three encoding profiles based on the source resolution defined at launch as a CloudFormation parameter. The three options are 1080, 720, 540 and correspond to the following encoding profiles:
 
 **1080p Profile::**<br/>
