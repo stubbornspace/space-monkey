@@ -4,12 +4,13 @@ How to implement Live streaming on AWS  at scale leveraging AWS Elemental MediaL
 
 
 ## On this Page
-* [Architecture Overview]()
-* [Solution Deployment]()
-* [Source Code]()
-* [Encoding Profiles](#encoding-profile)
-* [Creating a custom Build]()
-* [Additional Resources]()
+- [Architecture Overview]()
+- [Solution Deployment]()
+- [Source Code]()
+- [Encoding Profiles](#encoding-profile)
+- [Creating a custom Build]()
+- [Additional Resources]()
+- [Branch](#branch)
 
 
 ## Architecture Overview
@@ -115,7 +116,7 @@ Use the AWS CLI to sync the lambda code and demo console files to amazon S3:
 Launch the updated CloudFormation template from ```deployment/dist/``` folder.
 
 
-
+### Branch
 
 
 ***
