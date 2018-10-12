@@ -30,12 +30,14 @@ Template:: https://s3.amazonaws.com/rodeolabz-us-east-1/speke/speke_reference.js
 8. On the last page tick the ‘I acknowledge that AWS CloudFormation might create IAM resources’ box and then select launch.
 
 
-# 3 Workshop node_modules
+## 3 Workshop Modules
 
+### Video on Demand on AWS https://aws.amazon.com/answers/
 
-1.  Video on Demand on AWS https://aws.amazon.com/answers/
-2. Speke - https://github.com/awslabs/speke-reference-server/blob/master/workflow/drm-vod.md
-3. Rules – https://mediaservices.elemental.rodeo/mediaconvert/vodonawslab/RulesOnAWS.pdf
+### Speke - https://github.com/awslabs/speke-reference-server/blob/master/workflow/drm-vod.md
+
+### Rules – https://mediaservices.elemental.rodeo/mediaconvert/vodonawslab/RulesOnAWS.pdf
   * User:  vod-lab
   * PW: T00MuchFun
-4. QC  https://d2tyh2ajeox0aa.cloudfront.net/vod-qc.pdf
+
+### QC  https://d2tyh2ajeox0aa.cloudfront.net/vod-qc.pdf
