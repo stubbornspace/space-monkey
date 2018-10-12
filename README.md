@@ -32,12 +32,12 @@ Template:: https://s3.amazonaws.com/rodeolabz-us-east-1/speke/speke_reference.js
 
 ## 3 Workshop Modules
 
-### Video on Demand on AWS https://aws.amazon.com/answers/
+#### Video on Demand on AWS https://aws.amazon.com/answers/
 
-### Speke - https://github.com/awslabs/speke-reference-server/blob/master/workflow/drm-vod.md
+#### Speke - https://github.com/awslabs/speke-reference-server/blob/master/workflow/drm-vod.md
 
-### Rules – https://mediaservices.elemental.rodeo/mediaconvert/vodonawslab/RulesOnAWS.pdf
+#### Rules – https://mediaservices.elemental.rodeo/mediaconvert/vodonawslab/RulesOnAWS.pdf
   * User:  vod-lab
   * PW: T00MuchFun
 
-### QC  https://d2tyh2ajeox0aa.cloudfront.net/vod-qc.pdf
+#### QC  https://d2tyh2ajeox0aa.cloudfront.net/vod-qc.pdf
