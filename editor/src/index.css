@@ -12,6 +12,25 @@ code {
     monospace;
 }
 
+
 .main {
+  padding-left: 9rem;
+  padding-top: 4rem;
+  width: 90%;
+  max-width: 920px;
+
+}
+
+.header {
+  padding-top:1rem;
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.navbar {
   padding-left: 6rem;
+}
+
+.tools {
+  float:right;
 }
