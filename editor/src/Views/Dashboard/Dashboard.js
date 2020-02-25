@@ -21,7 +21,7 @@ class Dashboard extends React.Component {
         this.setState({data:data, isLoading:false});
         if (data.length === 0 ) {
             this.setState({noData:true});
-        }
+        }   
     } catch (err) {
         alert(err);
     }
@@ -45,6 +45,7 @@ class Dashboard extends React.Component {
       {data.map(i => (
           <tr key={i.uuid}>
               <td>{i.title}</td>
+              <td>{i.file}</td>
               <td>{i.date}</td>
               <td className="td-center">
                   <Link to= {{ pathname:"/edit", state:{ uuid:i.uuid} }}>
@@ -57,11 +58,13 @@ class Dashboard extends React.Component {
     )
     
     return (
+      
       <div>
         <Table striped bordered hover size="sm">
             <thead>
                 <tr>
                 <th>Title</th>
+                <th>File</th>
                 <th>Date</th>
                 <th></th>
                 </tr>

@@ -10,29 +10,13 @@ class Editor extends React.Component {
 		super(props);
 		this.state = {
 			uuid: null,
+			file:null,
 			title:"",
 			upload: false,
 			publish: false,
-			md:  "   ---  "  + 
-			"   author: \"Zaphod\"  "  + 
-			"   date: 2018-11-25  "  + 
-			"   linktitle: title  "  + 
-			"   cookingtime: mins  "  + 
-			"   title: title  "  + 
-			"   description:   "  + 
-			"   ---  "  + 
-			"     "  + 
-			"   # Title  "  + 
-			"     "  + 
-			"   ### Ingredients  "  + 
-			"   * food  "  + 
-			"     "  + 
-			"   ### Instructions  "  + 
-			"   1. cook  "  + 
-			"    " 
-		};
-		this.handleMd = this.handleMd.bind(this);
-	}
+			md:'' 
+		}
+	};
 
   	handleMd = value => {
     	this.setState({ md: value });
@@ -46,19 +30,22 @@ class Editor extends React.Component {
 
 	getPost = async () => {
 		try {
+			console.log('UUID')
+			let uuid;
 			if (this.props.location.state) {
-				console.log('UUID')
-				const data = await API.get('hugo', '/posts/'+this.props.location.state.uuid);
+				uuid = this.props.location.state.uuid;
 				this.setState({
-					uuid: this.props.location.state.uuid,
-					title: data.title,
-					md: data.md,
-					upload: true
-				});
-				console.log(data.title)
+					uuid: uuid
+				})
 			} else {
-				this.setState({title: "NEW POST"})
+				uuid = '0000'
 			}
+			const data = await API.get('hugo', '/posts/'+uuid);
+			this.setState({
+				title: data.title,
+				md: data.md
+			});
+			console.log(data.title)
 		} catch (err) {
             alert(err);
 		}

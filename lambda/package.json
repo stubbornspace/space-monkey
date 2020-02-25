@@ -1,0 +1,23 @@
+{
+  "name": "api-services",
+  "version": "1.0.0",
+  "engines": {
+    "node": "^8.10"
+  },
+  "description": "REST API micro services",
+  "main": "na",
+  "scripts": {
+    "test": "mocha lib/**/*.spec.js"
+  },
+  "dependencies": {
+    "moment": "*",
+    "shortid": "^2.2.14"
+  },
+  "repository": {
+    "type": "git",
+    "url": "na"
+  },
+  "author": "stubbornspace",
+  "license": "Apache-2.0",
+  "readme": "./README.md"
+}
