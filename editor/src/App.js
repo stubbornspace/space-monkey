@@ -10,7 +10,7 @@ import awsConfig from './aws_config'
 
 import Dashboard from './Views/Dashboard/Dashboard';
 import Editor from './Views/Editor/Editor';
-import Images from './Views/Images/Images';
+import Publish from './Views/Publish/Publish';
 
 Amplify.configure(awsConfig);
 Amplify.Logger.LOG_LEVEL = 'DEBUG';
@@ -30,9 +30,10 @@ class App extends React.Component {
           
           <Route render={({ location, history }) => (
             <React.Fragment>
-            <Navbar bg="light" expand="lg">
-              <Navbar.Brand href="/">FoodFunk</Navbar.Brand>
-            </Navbar>
+
+              <Navbar bg="light" expand="lg">
+                <Navbar.Brand href="/dashboard">FoodFunk</Navbar.Brand>
+              </Navbar>
 
               <SideNav onSelect={(selected) => {
                 const to = '/' + selected;
@@ -66,14 +67,6 @@ class App extends React.Component {
                           Publish
                       </NavText>
                     </NavItem>
-                    <NavItem eventKey="preview">
-                      <NavIcon>
-                        <FontAwesomeIcon id="icon" icon={faExternalLinkAlt} />
-                      </NavIcon>
-                      <NavText>
-                          Preview
-                      </NavText>
-                    </NavItem>
                     <hr></hr>
                     <NavItem onClick={this.signOut}>
                       <NavIcon>
@@ -90,7 +83,7 @@ class App extends React.Component {
               <Route path="/" exact component={Dashboard} />
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/edit" component={Editor} />
-              <Route path="/images" component={Images} />
+              <Route path="/publish" component={Publish} />
             </div>
 
         </React.Fragment>
@@ -105,3 +98,5 @@ class App extends React.Component {
 };
 
 export default App;
+
+

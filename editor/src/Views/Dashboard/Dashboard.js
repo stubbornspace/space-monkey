@@ -1,10 +1,11 @@
 import React from 'react';
-import { Table } from 'react-bootstrap';
+import { Table, Image } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { API } from 'aws-amplify';
-import hotdog from './hotdog.jpg';
+
+import hotdog from '../../hotdog.jpg';
 
 class Dashboard extends React.Component {
   constructor(props) { 
@@ -42,14 +43,14 @@ class Dashboard extends React.Component {
         {data.map(i => (
           <tr key={i.uuid}>
               <td>
-                <img
-                      width={32}
-                      height={32}
-                      src={hotdog}
-                      alt="Post"
-                  />
+                <Image 
+                  width="64"
+                  fluid
+                  src={hotdog}
+                  alt="Post"
+                />
               </td>
-              <td>{i.title}</td>
+              <td >{i.title}</td>
               <td>{i.date}</td>
               <td className="td-center">
                 <Link to= {{ pathname:"/edit", state:{ uuid:i.uuid} }}>
@@ -65,7 +66,7 @@ class Dashboard extends React.Component {
       
       <div>
 
-        <Table borderless hover size="sm">
+        <Table className="list" borderless size="sm">
             { tableBody }
         </Table>
 

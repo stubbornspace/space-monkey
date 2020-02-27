@@ -1,10 +1,11 @@
 import React from 'react';
-import { Button, FormControl, InputGroup, } from 'react-bootstrap';
+import { Button, FormControl, InputGroup, Row, Col, Image } from 'react-bootstrap';
 import bsCustomFileInput from 'bs-custom-file-input';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { API } from 'aws-amplify';
 
+import hotdog from '../../hotdog.jpg';
 
 class Editor extends React.Component {
   	constructor(props) {
@@ -90,42 +91,56 @@ class Editor extends React.Component {
     	return (
 			<div>
 
-				<InputGroup size="sm" className="mb-3">
-					<InputGroup.Prepend>
-						<InputGroup.Text id="title">Title</InputGroup.Text>
-						</InputGroup.Prepend>
-						<FormControl
-							defaultValue={this.state.title}
-							onChange={this.handleTitle}
+				<Row>
+				
+					<Col xs={9}>
+						<InputGroup size="sm" className="mb-3">
+						<InputGroup.Prepend>
+							<InputGroup.Text id="title">Title</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								defaultValue={this.state.title}
+								onChange={this.handleTitle}
+							/>
+						<InputGroup.Append>
+							<Button variant="outline-secondary" onClick={this.createPost}>Save Post</Button>
+						</InputGroup.Append>
+					</InputGroup>
+					<InputGroup size="sm" className="mb-3">
+						<InputGroup.Prepend>
+							<InputGroup.Text id="title">File</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								defaultValue={this.state.file}
+								onChange={this.handleTitle}
+							/>
+						<InputGroup.Append>
+							<Button variant="outline-secondary" onClick={this.createPost}>Delete</Button>
+						</InputGroup.Append>
+					</InputGroup>
+					<InputGroup size="sm" className="mb-3">
+						<InputGroup.Prepend>
+							<InputGroup.Text id="title">Image</InputGroup.Text>
+							</InputGroup.Prepend>
+							<FormControl
+								defaultValue={this.state.fimageile}
+								onChange={this.handleTitle}
+							/>
+						<InputGroup.Append>
+							<Button variant="outline-secondary" onClick={this.createPost}>Update</Button>
+						</InputGroup.Append>
+					</InputGroup>
+					</Col>
+
+					<Col xs={3}>
+						<Image 
+							fluid
+							src={hotdog}
+							alt="Post"
 						/>
-					<InputGroup.Append>
-						<Button variant="outline-secondary" onClick={this.createPost}>Save Post</Button>
-					</InputGroup.Append>
-				</InputGroup>
-				<InputGroup size="sm" className="mb-3">
-					<InputGroup.Prepend>
-						<InputGroup.Text id="title">File</InputGroup.Text>
-						</InputGroup.Prepend>
-						<FormControl
-							defaultValue={this.state.file}
-							onChange={this.handleTitle}
-						/>
-					<InputGroup.Append>
-						<Button variant="outline-secondary" onClick={this.createPost}>Delete</Button>
-					</InputGroup.Append>
-				</InputGroup>
-				<InputGroup size="sm" className="mb-3">
-					<InputGroup.Prepend>
-						<InputGroup.Text id="title">Image</InputGroup.Text>
-						</InputGroup.Prepend>
-						<FormControl
-							defaultValue={this.state.fimageile}
-							onChange={this.handleTitle}
-						/>
-					<InputGroup.Append>
-						<Button variant="outline-secondary" onClick={this.createPost}>Update</Button>
-					</InputGroup.Append>
-				</InputGroup>
+					</Col>
+				
+				</Row>
 
 				<SimpleMDE 
 					onChange={this.handleMd}

@@ -18,13 +18,27 @@ hr {
   border-top: 2px solid #e6e6e61a;
 }
 
+.list td {
+  text-align: center;
+  vertical-align: middle;
+}
 
+.list tr {
+  border: 1px solid #dee2e6;
+  border-collapse: collapse;
+  box-shadow: 1px 1px 4px 0 rgba(0,0,0,0.15);
+}
 .main {
   padding-left: 9rem;
-  padding-top: 2rem;
+  padding-top: 3rem;
   width: 90%;
   max-width: 920px;
 }
+
+.main {
+  text-align: center;
+}
+
 
 .header {
   padding-top:1rem;
