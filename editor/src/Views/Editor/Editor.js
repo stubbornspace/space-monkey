@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, FormControl, InputGroup, Row, Col, Image } from 'react-bootstrap';
-import bsCustomFileInput from 'bs-custom-file-input';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { API } from 'aws-amplify';
@@ -12,34 +11,34 @@ class Editor extends React.Component {
 		super(props);
 		this.state = {
 			uuid: null,
-			file:null,
-			title:"",
+			title: null,
+			postFile:null,
+			postTitle:'',
 			upload: false,
-			md:'' 
+			markdown:'',
+			image:hotdog,
+			imageFile:null
 		}
 	};
 
-  	handleMd = value => {
-    	this.setState({ md: value });
+  	handleMarkdown = value => {
+    		this.setState({ markdown: value });
   		//console.log(value)
  	};
 
 	handleTitle = event => {
-		this.setState({ title: event.target.value });
+		this.setState({ postTitle: event.target.value });
 		//console.log(event.target.value)
 	};
 
-	onChange = async (e) => {
-		try {
-		  const file = e.target.files[0];
-		  const name = e.target.files[0].name
-		 console.log(file,name)
-		} catch(err) {
-		  alert(err)
-		}
-		alert('SUCCESS')
-	  };
-	
+	handleImage = event => {
+		this.setState({ 
+			image: event.target.files[0],
+			imageFile: event.target.files[0].name,
+
+		});
+		//console.log(event.target.value)
+	};
 
 	getPost = async () => {
 		try {
@@ -51,6 +50,7 @@ class Editor extends React.Component {
 					uuid: uuid
 				})
 			} else {
+				//This is the Markdown template for posts
 				uuid = '0000'
 			}
 			const data = await API.get('hugo', '/posts/'+uuid);
@@ -59,6 +59,13 @@ class Editor extends React.Component {
 				md: data.md,
 				file: data.file
 			});
+			if (data.image) {
+				const data = await API.get('hugo', '/images/'+uuid);
+				this.setState({
+					image: data.image,
+					imageFile:data.file
+				})
+			}
 			console.log(data.title)
 		} catch (err) {
             alert(err);
@@ -82,8 +89,7 @@ class Editor extends React.Component {
 	}
 	
 	componentDidMount() { 
-		this.getPost();
-		bsCustomFileInput.init()
+		this.getPost();	
 	}; 
 
 	render() {   
@@ -108,11 +114,11 @@ class Editor extends React.Component {
 					</InputGroup>
 					<InputGroup size="sm" className="mb-3">
 						<InputGroup.Prepend>
-							<InputGroup.Text id="title">File</InputGroup.Text>
+							<InputGroup.Text id="title">Post File</InputGroup.Text>
 							</InputGroup.Prepend>
 							<FormControl
-								defaultValue={this.state.file}
-								onChange={this.handleTitle}
+								defaultValue={this.state.postFile}
+								onChange={this.handleFile}
 							/>
 						<InputGroup.Append>
 							<Button variant="outline-secondary" onClick={this.createPost}>Delete</Button>
@@ -123,8 +129,8 @@ class Editor extends React.Component {
 							<InputGroup.Text id="title">Image</InputGroup.Text>
 							</InputGroup.Prepend>
 							<FormControl
-								defaultValue={this.state.fimageile}
-								onChange={this.handleTitle}
+								defaultValue={this.state.imageFile}
+								onChange={this.handleImage}
 							/>
 						<InputGroup.Append>
 							<Button variant="outline-secondary" onClick={this.createPost}>Update</Button>
@@ -135,7 +141,7 @@ class Editor extends React.Component {
 					<Col xs={3}>
 						<Image 
 							fluid
-							src={hotdog}
+							src={this.state.image}
 							alt="Post"
 						/>
 					</Col>
@@ -143,8 +149,8 @@ class Editor extends React.Component {
 				</Row>
 
 				<SimpleMDE 
-					onChange={this.handleMd}
-					value={this.state.md}
+					onChange={this.handleMarkdown}
+					value={this.state.markdown}
 				/>
 
 			</div>
