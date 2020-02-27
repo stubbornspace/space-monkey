@@ -1,9 +1,10 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { Table } from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { Link } from "react-router-dom";
 import { API } from 'aws-amplify';
+import hotdog from './hotdog.jpg';
 
 class Dashboard extends React.Component {
   constructor(props) { 
@@ -27,10 +28,6 @@ class Dashboard extends React.Component {
     }
   };
 
-  handleSelect= async () => {
-    console.log('clicked')
-  }
-
   componentDidMount() { 
     this.getItems();
   }; 
@@ -42,35 +39,36 @@ class Dashboard extends React.Component {
 
     const tableBody = (
       <tbody  ref={this.tableBody} >
-      {data.map(i => (
+        {data.map(i => (
           <tr key={i.uuid}>
+              <td>
+                <img
+                      width={32}
+                      height={32}
+                      src={hotdog}
+                      alt="Post"
+                  />
+              </td>
               <td>{i.title}</td>
-              <td>{i.file}</td>
               <td>{i.date}</td>
               <td className="td-center">
-                  <Link to= {{ pathname:"/edit", state:{ uuid:i.uuid} }}>
-                  <FontAwesomeIcon id="icon" icon={faArrowRight} />
-                  </Link>
+                <Link to= {{ pathname:"/edit", state:{ uuid:i.uuid} }}>
+                  <FontAwesomeIcon size="sm" color="grey" icon={faEdit} />
+                </Link>
               </td>
           </tr>
-      ))}
+        ))}
       </tbody>
     )
     
     return (
       
       <div>
-        <Table striped bordered hover size="sm">
-            <thead>
-                <tr>
-                <th>Title</th>
-                <th>File</th>
-                <th>Date</th>
-                <th></th>
-                </tr>
-            </thead>
+
+        <Table borderless hover size="sm">
             { tableBody }
         </Table>
+
       </div>
     )
 

@@ -1,14 +1,16 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { Navbar } from 'react-bootstrap';
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import { faPlusSquare, faHome, faExternalLinkAlt, faSignOutAlt, faUpload } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlusSquare, faHome, faExternalLinkAlt, faSignOutAlt, faImages } from '@fortawesome/free-solid-svg-icons';
+import { Navbar } from 'react-bootstrap';
+
 import Amplify from 'aws-amplify';
 import awsConfig from './aws_config'
 
 import Dashboard from './Views/Dashboard/Dashboard';
 import Editor from './Views/Editor/Editor';
+import Images from './Views/Images/Images';
 
 Amplify.configure(awsConfig);
 Amplify.Logger.LOG_LEVEL = 'DEBUG';
@@ -25,6 +27,7 @@ class App extends React.Component {
     return (
       <div> 
         <Router>
+          
           <Route render={({ location, history }) => (
             <React.Fragment>
             <Navbar bg="light" expand="lg">
@@ -55,12 +58,12 @@ class App extends React.Component {
                           New Post
                       </NavText>
                     </NavItem>
-                    <NavItem eventKey="images">
+                    <NavItem eventKey="publish">
                       <NavIcon>
-                        <FontAwesomeIcon id="icon" icon={faImages} />
+                        <FontAwesomeIcon id="icon" icon={faUpload} />
                       </NavIcon>
                       <NavText>
-                          Images
+                          Publish
                       </NavText>
                     </NavItem>
                     <NavItem eventKey="preview">
@@ -71,12 +74,13 @@ class App extends React.Component {
                           Preview
                       </NavText>
                     </NavItem>
+                    <hr></hr>
                     <NavItem onClick={this.signOut}>
                       <NavIcon>
                         <FontAwesomeIcon id="icon" icon={faSignOutAlt} />
                       </NavIcon>
                       <NavText>
-                          Preview
+                          Logout
                       </NavText>
                     </NavItem>
               </SideNav.Nav>
@@ -86,6 +90,7 @@ class App extends React.Component {
               <Route path="/" exact component={Dashboard} />
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/edit" component={Editor} />
+              <Route path="/images" component={Images} />
             </div>
 
         </React.Fragment>

@@ -12,13 +12,18 @@ code {
     monospace;
 }
 
+hr {
+  margin: 0.75rem;
+  border: 0;
+  border-top: 2px solid #e6e6e61a;
+}
+
 
 .main {
   padding-left: 9rem;
-  padding-top: 4rem;
+  padding-top: 2rem;
   width: 90%;
   max-width: 920px;
-
 }
 
 .header {
@@ -31,6 +36,3 @@ code {
   padding-left: 6rem;
 }
 
-.tools {
-  float:right;
-}

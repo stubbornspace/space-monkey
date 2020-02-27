@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, FormControl, InputGroup, Row, Col } from 'react-bootstrap';
+import { Button, FormControl, InputGroup, } from 'react-bootstrap';
+import bsCustomFileInput from 'bs-custom-file-input';
 import SimpleMDE from 'react-simplemde-editor';
 import 'easymde/dist/easymde.min.css';
 import { API } from 'aws-amplify';
@@ -13,7 +14,6 @@ class Editor extends React.Component {
 			file:null,
 			title:"",
 			upload: false,
-			publish: false,
 			md:'' 
 		}
 	};
@@ -27,6 +27,18 @@ class Editor extends React.Component {
 		this.setState({ title: event.target.value });
 		//console.log(event.target.value)
 	};
+
+	onChange = async (e) => {
+		try {
+		  const file = e.target.files[0];
+		  const name = e.target.files[0].name
+		 console.log(file,name)
+		} catch(err) {
+		  alert(err)
+		}
+		alert('SUCCESS')
+	  };
+	
 
 	getPost = async () => {
 		try {
@@ -43,7 +55,8 @@ class Editor extends React.Component {
 			const data = await API.get('hugo', '/posts/'+uuid);
 			this.setState({
 				title: data.title,
-				md: data.md
+				md: data.md,
+				file: data.file
 			});
 			console.log(data.title)
 		} catch (err) {
@@ -63,38 +76,62 @@ class Editor extends React.Component {
 		} catch (err) {
             alert(err);
 		}
+		alert('Post saved')
+		
 	}
 	
 	componentDidMount() { 
 		this.getPost();
+		bsCustomFileInput.init()
 	}; 
 
 	render() {   
     
     	return (
 			<div>
-				<Row>
-					<Col>
-						<InputGroup size="sm" className="mb-3">
-							<InputGroup.Prepend>
-							<InputGroup.Text id="title">Title</InputGroup.Text>
-							</InputGroup.Prepend>
-							<FormControl
-								defaultValue={this.state.title}
-								onChange={this.handleTitle}
-							/>
-						</InputGroup>
-					</Col>
-					<Col>
-						<div className="tools">
-							<Button size="sm" variant="link" onClick={this.createPost}>Save</Button>
-						</div>
-					</Col>
-				</Row>
+
+				<InputGroup size="sm" className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="title">Title</InputGroup.Text>
+						</InputGroup.Prepend>
+						<FormControl
+							defaultValue={this.state.title}
+							onChange={this.handleTitle}
+						/>
+					<InputGroup.Append>
+						<Button variant="outline-secondary" onClick={this.createPost}>Save Post</Button>
+					</InputGroup.Append>
+				</InputGroup>
+				<InputGroup size="sm" className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="title">File</InputGroup.Text>
+						</InputGroup.Prepend>
+						<FormControl
+							defaultValue={this.state.file}
+							onChange={this.handleTitle}
+						/>
+					<InputGroup.Append>
+						<Button variant="outline-secondary" onClick={this.createPost}>Delete</Button>
+					</InputGroup.Append>
+				</InputGroup>
+				<InputGroup size="sm" className="mb-3">
+					<InputGroup.Prepend>
+						<InputGroup.Text id="title">Image</InputGroup.Text>
+						</InputGroup.Prepend>
+						<FormControl
+							defaultValue={this.state.fimageile}
+							onChange={this.handleTitle}
+						/>
+					<InputGroup.Append>
+						<Button variant="outline-secondary" onClick={this.createPost}>Update</Button>
+					</InputGroup.Append>
+				</InputGroup>
+
 				<SimpleMDE 
 					onChange={this.handleMd}
 					value={this.state.md}
 				/>
+
 			</div>
     	)
   	}
